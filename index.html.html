@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alpine Digital | Web Design & Development for Swiss Businesses</title>
+    <meta
+      name="description"
+      content="Alpine Digital creates affordable, modern websites for Swiss small businesses. From CHF 79."
+    />
+    <style>
+      :root {
+        --navy: #0b1f33;
+        --navy-2: #112b45;
+        --ice: #4da3d9;
+        --ice-soft: #eaf5ff;
+        --bg-soft: #f4f7fa;
+        --border: #dce4ea;
+        --text: #1d2a36;
+        --muted: #536573;
+        --white: #ffffff;
+        --shadow: 0 14px 30px rgba(11, 31, 51, 0.08);
+        --radius: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--white);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        margin: 0 0 18px;
+        font-size: clamp(2rem, 2vw + 1rem, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.06em;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--ice);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+
+      .lead {
+        font-size: 18px;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 52px;
+        padding: 0 24px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        font-weight: 700;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .btn.primary {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .btn.primary:hover {
+        background: var(--ice);
+      }
+
+      .btn.secondary {
+        background: rgba(255, 255, 255, 0.7);
+        border-color: var(--navy);
+        color: var(--navy);
+      }
+
+      .btn.secondary:hover {
+        background: var(--ice-soft);
+      }
+
+      .btn.ice {
+        background: var(--ice);
+        color: var(--white);
+      }
+
+      .btn.ice:hover {
+        filter: brightness(1.05);
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+        gap: 20px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.05rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: var(--navy);
+      }
+
+      .brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--ice) 0%, var(--navy) 100%);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        flex: 1;
+      }
+
+      .nav a {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+        transition: color 0.2s ease;
+      }
+
+      .nav a:hover {
+        color: var(--ice);
+      }
+
+      .nav-cta {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .hero {
+        background: var(--bg-soft);
+        padding: 70px 0 80px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .hero-copy {
+        padding-right: 10px;
+      }
+
+      .hero h1 {
+        margin: 18px 0 18px;
+        font-size: clamp(2.5rem, 3vw + 1.4rem, 3.7rem);
+        line-height: 1.05;
+        letter-spacing: -0.08em;
+        font-weight: 800;
+        color: var(--navy);
+      }
+
+      .hero h1 .sub {
+        display: block;
+        font-size: clamp(1.4rem, 1.3vw + 0.8rem, 2.2rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        color: var(--muted);
+        margin-top: 12px;
+      }
+
+      .hero-description {
+        max-width: 560px;
+        font-size: 18px;
+        color: var(--muted);
+        margin: 0 0 30px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 30px;
+      }
+
+      .check-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px 28px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      .check-list li::before {
+        content: "✓";
+        color: var(--ice);
+        margin-right: 8px;
+        font-weight: 900;
+      }
+
+      .mockup-box {
+        background: linear-gradient(180deg, var(--white) 0%, #eef5fa 100%);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 18px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #d9dfe6;
+      }
+
+      .dot:nth-child(1) { background: #ff6a6a; }
+      .dot:nth-child(2) { background: #ffc857; }
+      .dot:nth-child(3) { background: #4cd964; }
+
+      .mockup-content {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .mockup-top {
+        background: var(--navy);
+        color: var(--white);
+        padding: 18px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .mockup-body {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 14px;
+        padding: 20px 18px 18px;
+      }
+
+      .placeholder {
+        background: linear-gradient(180deg, #edf3f9, #f7fafc);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        min-height: 260px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 14px 16px auto 16px;
+        height: 16px;
+        border-radius: 8px;
+        background: #dfeaf5;
+      }
+
+      .placeholder::after {
+        content: "";
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        top: 42px;
+        border-radius: 10px;
+        background: linear-gradient(180deg, #ffffff 0%, #edf5fd 100%);
+      }
+
+      .mini-stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .mini-card {
+        background: var(--bg-soft);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 14px;
+      }
+
+      .mini-card strong {
+        display: block;
+        color: var(--navy);
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+      }
+
+      .mini-card span {
+        display: block;
+        height: 8px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #dfeaf5 0%, #bddaf3 100%);
+        margin-bottom: 7px;
+      }
+
+      .trust {
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .trust-inner {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        gap: 18px;
+        padding: 28px 0;
+      }
+
+      .trust-title {
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: var(--navy);
+        text-align: center;
+      }
+
+      .trust-points {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 26px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      .trust-points li::before {
+        content: "✓";
+        color: var(--ice);
+        margin-right: 8px;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .service-card,
+      .price-card,
+      .step,
+      .demo-card,
+      .faq-item,
+      .showcase-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 8px 18px rgba(12, 30, 45, 0.04);
+      }
+
+      .service-card {
+        padding: 28px;
+        min-height: 250px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 30px rgba(11, 31, 51, 0.08);
+        border-color: var(--ice);
+      }
+
+      .icon-wrap {
+        width: 52px;
+        height: 52px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: var(--ice-soft);
+        color: var(--navy);
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
+
+      .service-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+      }
+
+      .service-card p {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      .price-tag {
+        margin-top: auto;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--navy);
+      }
+
+      .price-tag span {
+        color: var(--ice);
+      }
+
+      .cta-band {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .cta-band-inner {
+        padding: 78px 0;
+        text-align: center;
+      }
+
+      .cta-label {
+        display: block;
+        margin-bottom: 16px;
+        color: #b8d8f0;
+        font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .cta-band h2 {
+        margin: 0 0 18px;
+        font-size: clamp(2.2rem, 2vw + 1.4rem, 3.5rem);
+        line-height: 1.08;
+        letter-spacing: -0.06em;
+      }
+
+      .cta-band p {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0 auto 26px;
+        max-width: 680px;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 1.35fr;
+        gap: 26px;
+        align-items: stretch;
+      }
+
+      .price-card {
+        padding: 30px;
+      }
+
+      .price-card .label {
+        display: inline-block;
+        font-size: 0.8rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ice);
+        font-weight: 800;
+        margin-bottom: 18px;
+      }
+
+      .price-card h3 {
+        margin: 0 0 8px;
+        font-size: 2rem;
+        letter-spacing: -0.06em;
+        line-height: 1.1;
+      }
+
+      .price-amount {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin: 18px 0 6px;
+      }
+
+      .price-amount strong {
+        font-size: clamp(2.3rem, 2.2vw + 1rem, 3rem);
+        line-height: 1;
+        letter-spacing: -0.06em;
+      }
+
+      .price-amount span {
+        font-size: 0.95rem;
+        color: var(--muted);
+        text-transform: lowercase;
+      }
+
+      .list {
+        list-style: none;
+        padding: 0;
+        margin: 26px 0 0;
+      }
+
+      .list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+
+      .list li::before {
+        content: "✓";
+        color: var(--ice);
+        font-weight: 900;
+        margin-top: 1px;
+      }
+
+      .feature-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 22px;
+        margin-top: 24px;
+      }
+
+      .feature-list .row {
+        background: var(--bg-soft);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .feature-name {
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .feature-price {
+        font-weight: 800;
+        color: var(--ice);
+      }
+
+      .feature-list .row.free {
+        background: var(--white);
+      }
+
+      .feature-list .row.free .feature-price {
+        color: var(--navy);
+      }
+
+      .step-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .step {
+        padding: 24px 18px;
+        text-align: center;
+      }
+
+      .step-number {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--ice-soft);
+        color: var(--navy);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+
+      .step h3 {
+        margin: 0 0 8px;
+        font-size: 1.35rem;
+        letter-spacing: -0.04em;
+      }
+
+      .step p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .why-item {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 18px;
+      }
+
+      .why-item .icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+      }
+
+      .why-item h3 {
+        margin: 0 0 10px;
+        font-size: 1.35rem;
+        letter-spacing: -0.04em;
+      }
+
+      .why-item p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .demo-card {
+        overflow: hidden;
+      }
+
+      .demo-visual {
+        background: linear-gradient(180deg, #edf3f9, #f7fafc);
+        min-height: 200px;
+        padding: 22px 18px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .demo-window {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .demo-bar {
+        padding: 12px 14px;
+        background: var(--navy);
+        color: var(--white);
+        display: flex;
+        gap: 7px;
+        align-items: center;
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .demo-content {
+        padding: 16px;
+      }
+
+      .demo-content .line {
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #e5edf5 0%, #d6e9ff 100%);
+        margin-bottom: 10px;
+      }
+
+      .demo-content .line.short { width: 62%; }
+      .demo-content .line.medium { width: 82%; }
+      .demo-content .line.long { width: 100%; }
+
+      .demo-body {
+        padding: 18px 20px 22px;
+      }
+
+      .demo-body h3 {
+        margin: 0 0 6px;
+        font-size: 1.25rem;
+        letter-spacing: -0.04em;
+      }
+
+      .demo-body p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .about-box {
+        background: var(--bg-soft);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 28px 30px;
+      }
+
+      .about-box p {
+        max-width: 780px;
+        margin: 0 auto;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .faq-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        margin-bottom: 12px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        width: 100%;
+        background: transparent;
+        border: 0;
+        padding: 20px 22px;
+        text-align: left;
+        font: inherit;
+        font-weight: 800;
+        color: var(--navy);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .faq-question span:last-child {
+        font-size: 1.5rem;
+        color: var(--ice);
+        transition: transform 0.2s ease;
+      }
+
+      .faq-item.active .faq-question span:last-child {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+      }
+
+      .faq-answer p {
+        margin: 0;
+        padding: 0 22px 22px;
+        color: var(--muted);
+      }
+
+      .final-cta {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .final-cta-inner {
+        text-align: center;
+        padding: 78px 0 88px;
+      }
+
+      .final-cta-small {
+        display: block;
+        color: #b8d8f0;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        margin-bottom: 18px;
+      }
+
+      .final-cta h2 {
+        margin: 0 0 18px;
+        font-size: clamp(2.2rem, 2.6vw + 1.2rem, 4rem);
+        line-height: 1.06;
+        letter-spacing: -0.06em;
+      }
+
+      .final-cta p {
+        margin: 0 auto 26px;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 640px;
+      }
+
+      .final-cta .footer-note {
+        margin-top: 18px;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 28px;
+      }
+
+      .contact-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 28px;
+      }
+
+      .contact-card h3 {
+        margin: 0 0 20px;
+        font-size: 1.7rem;
+        letter-spacing: -0.05em;
+      }
+
+      .contact-text {
+        color: var(--muted);
+        font-size: 1.05rem;
+        margin-bottom: 24px;
+      }
+
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 16px;
+      }
+
+      .contact-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      .contact-list li .emoji {
+        width: 28px;
+        text-align: center;
+      }
+
+      form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--border);
+        background: #fbfcfe;
+        border-radius: 10px;
+        padding: 14px 14px;
+        font: inherit;
+        color: var(--text);
+      }
+
+      textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 2px solid rgba(77, 163, 217, 0.2);
+        border-color: var(--ice);
+      }
+
+      .footer {
+        background: var(--navy);
+        color: rgba(255, 255, 255, 0.8);
+        padding: 60px 0 26px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 1fr;
+        gap: 30px;
+        margin-bottom: 36px;
+      }
+
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: var(--white);
+      }
+
+      .footer-brand .brand-mark {
+        width: 32px;
+        height: 32px;
+      }
+
+      .footer h4 {
+        margin: 0 0 16px;
+        color: var(--white);
+        font-size: 0.95rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .footer-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .footer-nav a {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .footer-contact {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .footer-bottom {
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: center;
+        flex-wrap: wrap;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .pricing-grid,
+        .contact-grid,
+        .hero-inner,
+        .step-grid,
+        .why-grid,
+        .showcase-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          font-size: 16px;
+        }
+
+        .section {
+          padding: 80px 0;
+        }
+
+        .nav {
+          display: none;
+          position: absolute;
+          top: 72px;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.98);
+          border-bottom: 1px solid var(--border);
+          box-shadow: 0 12px 18px rgba(11, 31, 51, 0.04);
+          padding: 18px 16px 20px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav.open {
+          display: flex;
+        }
+
+        .nav-wrap {
+          position: relative;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 42px;
+          height: 42px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          background: var(--white);
+          cursor: pointer;
+          font-size: 1.4rem;
+          color: var(--navy);
+        }
+
+        .hero {
+          padding-top: 46px;
+        }
+
+        .hero-inner {
+          gap: 26px;
+        }
+
+        .hero h1 {
+          font-size: clamp(2.3rem, 9vw, 2.8rem);
+        }
+
+        .hero-actions {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .services-grid,
+        .feature-list,
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="#top" class="brand" aria-label="Alpine Digital home">
+          <span class="brand-mark">A</span>
+          <span>Alpine Digital</span>
+        </a>
+
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#services">Services</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a href="#contact" class="btn primary">Get Started →</a>
+        </div>
+
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero reveal">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">Web Design &amp; Web Development 🇨🇭</span>
+            <h1>
+              YOUR BUSINESS. OUR DIGITAL.
+              <span class="sub">Modern websites for Swiss small businesses.</span>
+            </h1>
+            <p class="hero-description">
+              Professional, affordable websites built to help your business stand out online — without the agency price tag.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#contact" class="btn primary">Get Your Website →</a>
+              <a href="#pricing" class="btn secondary">View Pricing</a>
+            </div>
+
+            <ul class="check-list" aria-label="Key benefits">
+              <li>From CHF 79</li>
+              <li>Mobile-friendly</li>
+              <li>Swiss-focused</li>
+            </ul>
+          </div>
+
+          <div class="mockup-box" aria-label="Website mockup preview">
+            <div class="browser-bar">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="mockup-content">
+              <div class="mockup-top">
+                <span>Alpine Digital</span>
+                <span>New Website</span>
+              </div>
+              <div class="mockup-body">
+                <div class="placeholder" aria-hidden="true"></div>
+                <div class="mini-stack">
+                  <div class="mini-card">
+                    <strong>We Build</strong>
+                    <span></span>
+                    <span></span>
+                    <span style="width: 52%"></span>
+                  </div>
+                  <div class="mini-card">
+                    <strong>Price</strong>
+                    <span style="width: 72%"></span>
+                    <span style="width: 48%"></span>
+                  </div>
+                  <div class="mini-card">
+                    <strong>Launch</strong>
+                    <span style="width: 90%"></span>
+                    <span style="width: 68%"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust reveal" aria-label="Trust strip">
+        <div class="container trust-inner">
+          <div class="trust-title">Built for small businesses</div>
+          <ul class="trust-points">
+            <li>Affordable</li>
+            <li>Mobile-ready</li>
+            <li>Custom design</li>
+            <li>Swiss-focused</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="services" class="section reveal">
+        <div class="container">
+          <span class="eyebrow" style="display: block; text-align: center; margin-bottom: 12px;">What we can build for you</span>
+          <h2 class="section-title">What We Can Build For You</h2>
+          <p class="lead">Everything you need to establish a professional online presence.</p>
+
+          <div class="services-grid" style="margin-top: 42px;">
+            <article class="service-card">
+              <div class="icon-wrap" aria-hidden="true">◫</div>
+              <h3>Website Design</h3>
+              <p>A modern, responsive website designed around your business.</p>
+              <div class="price-tag"><span>From CHF 79</span></div>
+            </article>
+
+            <article class="service-card">
+              <div class="icon-wrap" aria-hidden="true">⌘</div>
+              <h3>Web Development</h3>
+              <p>Fast, functional websites built with clean and reliable code.</p>
+              <div class="price-tag">Custom</div>
+            </article>
+
+            <article class="service-card">
+              <div class="icon-wrap" aria-hidden="true">✦</div>
+              <h3>Website Features</h3>
+              <p>Add contact forms, galleries, booking systems, analytics and more.</p>
+              <div class="price-tag"><span>From CHF 3</span></div>
+            </article>
+
+            <article class="service-card">
+              <div class="icon-wrap" aria-hidden="true">↻</div>
+              <h3>Website Updates</h3>
+              <p>Need a small change after your website is live? We’ve got you covered.</p>
+              <div class="price-tag"><span>From CHF 5</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band reveal">
+        <div class="container cta-band-inner">
+          <span class="cta-label">Starting simple</span>
+          <h2>Your Website From CHF 79.</h2>
+          <p>Get a professional one-page website without paying hundreds or thousands of francs.</p>
+          <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+            <div class="price-amount" style="color: var(--white); align-items: baseline;">
+              <strong style="font-size: clamp(3rem, 4vw, 5rem); color: var(--white);">CHF 79</strong>
+              <span style="color: rgba(255,255,255,.7);">one-time</span>
+            </div>
+          </div>
+          <ul class="list" style="max-width: 760px; margin: 0 auto 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); color: var(--white);">
+            <li>Custom design</li>
+            <li>Mobile optimization</li>
+            <li>SSL / HTTPS</li>
+            <li>Website publishing</li>
+            <li>Contact information</li>
+            <li>Social media links</li>
+            <li>Google Maps</li>
+            <li>FAQ section</li>
+          </ul>
+          <a href="#contact" class="btn ice" style="min-width: 220px;">Start Your Website →</a>
+        </div>
+      </section>
+
+      <section id="pricing" class="section reveal">
+        <div class="container">
+          <span class="eyebrow" style="display: block; text-align: center; margin-bottom: 12px;">Build your website your way</span>
+          <h2 class="section-title">BUILD YOUR WEBSITE YOUR WAY.</h2>
+          <p class="lead">Start with what you need and add features whenever you want.</p>
+
+          <div class="pricing-grid" style="margin-top: 42px;">
+            <article class="price-card">
+              <span class="label">One-page website</span>
+              <h3>ONE-PAGE WEBSITE</h3>
+              <div class="price-amount">
+                <strong>CHF 79</strong>
+                <span>one-time</span>
+              </div>
+
+              <ul class="list">
+                <li>Custom design</li>
+                <li>Mobile optimization</li>
+                <li>SSL/HTTPS</li>
+                <li>Publishing</li>
+                <li>Basic structure</li>
+              </ul>
+            </article>
+
+            <article class="price-card">
+              <span class="label">Add what you need</span>
+              <h3>Extra features</h3>
+
+              <div class="feature-list">
+                <div class="row"><span class="feature-name">Contact form</span><span class="feature-price">CHF 20</span></div>
+                <div class="row"><span class="feature-name">Basic SEO setup</span><span class="feature-price">CHF 15</span></div>
+                <div class="row"><span class="feature-name">Animations</span><span class="feature-price">CHF 15</span></div>
+                <div class="row"><span class="feature-name">Basic booking system</span><span class="feature-price">CHF 35</span></div>
+                <div class="row"><span class="feature-name">Online form</span><span class="feature-price">CHF 10</span></div>
+                <div class="row"><span class="feature-name">Newsletter signup</span><span class="feature-price">CHF 3</span></div>
+                <div class="row"><span class="feature-name">Google Reviews</span><span class="feature-price">CHF 5</span></div>
+                <div class="row"><span class="feature-name">Performance optimization</span><span class="feature-price">CHF 10</span></div>
+                <div class="row"><span class="feature-name">Analytics setup</span><span class="feature-price">CHF 5</span></div>
+                <div class="row"><span class="feature-name">Small website update</span><span class="feature-price">CHF 5</span></div>
+                <div class="row" style="grid-column: 1 / -1;"><span class="feature-name">Custom functionality</span><span class="feature-price">From CHF 25</span></div>
+
+                <div class="row free" style="grid-column: 1 / -1;"><span class="feature-name">Custom design</span><span class="feature-price">Included</span></div>
+                <div class="row free"><span class="feature-name">Image gallery up to 10 images</span><span class="feature-price">Included</span></div>
+                <div class="row free"><span class="feature-name">FAQ</span><span class="feature-price">Included</span></div>
+                <div class="row free"><span class="feature-name">Google Maps</span><span class="feature-price">Included</span></div>
+                <div class="row free"><span class="feature-name">Social media links</span><span class="feature-price">Included</span></div>
+                <div class="row free"><span class="feature-name">WhatsApp/direct contact button</span><span class="feature-price">Included</span></div>
+                <div class="row free"><span class="feature-name">Mobile optimization</span><span class="feature-price">Included</span></div>
+                <div class="row free"><span class="feature-name">SSL/HTTPS</span><span class="feature-price">Included</span></div>
+                <div class="row free"><span class="feature-name">Website publishing</span><span class="feature-price">Included</span></div>
+                <div class="row free" style="grid-column: 1 / -1;"><span class="feature-name">Domain connection</span><span class="feature-price">Included</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="background: var(--bg-soft);" id="how-it-works">
+        <div class="container reveal">
+          <span class="eyebrow" style="display: block; text-align: center; margin-bottom: 12px;">How it works</span>
+          <h2 class="section-title">FROM IDEA TO ONLINE.</h2>
+
+          <div class="step-grid" style="margin-top: 42px;">
+            <article class="step">
+              <div class="step-number">01</div>
+              <h3>Tell us what you need</h3>
+              <p>Tell us about your business and what you'd like your website to do.</p>
+            </article>
+            <article class="step">
+              <div class="step-number">02</div>
+              <h3>We build it</h3>
+              <p>We design and develop your website around your business.</p>
+            </article>
+            <article class="step">
+              <div class="step-number">03</div>
+              <h3>You review it</h3>
+              <p>You check the website and tell us what you'd like changed.</p>
+            </article>
+            <article class="step">
+              <div class="step-number">04</div>
+              <h3>Go live</h3>
+              <p>Once everything looks right, we publish your website.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container">
+          <span class="eyebrow" style="display: block; text-align: center; margin-bottom: 12px;">Why Alpine Digital?</span>
+          <h2 class="section-title">WHY ALPINE DIGITAL?</h2>
+
+          <div class="why-grid" style="margin-top: 42px;">
+            <article class="why-item">
+              <div class="icon" aria-hidden="true">💰</div>
+              <h3>Affordable</h3>
+              <p>Professional websites shouldn't have to cost thousands of francs.</p>
+            </article>
+            <article class="why-item">
+              <div class="icon" aria-hidden="true">🎨</div>
+              <h3>Custom</h3>
+              <p>Your website is designed around your business — not copied from a generic template.</p>
+            </article>
+            <article class="why-item">
+              <div class="icon" aria-hidden="true">📱</div>
+              <h3>Mobile-ready</h3>
+              <p>Your website will work across phones, tablets and computers.</p>
+            </article>
+            <article class="why-item">
+              <div class="icon" aria-hidden="true">⚡</div>
+              <h3>Focused on small businesses</h3>
+              <p>We keep things simple, practical and affordable for Swiss businesses.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" style="background: var(--bg-soft);">
+        <div class="container">
+          <span class="eyebrow" style="display: block; text-align: center; margin-bottom: 12px;">Built for business</span>
+          <h2 class="section-title">BUILT FOR BUSINESS.</h2>
+
+          <div class="showcase-grid" style="margin-top: 42px;">
+            <article class="demo-card">
+              <div class="demo-visual">
+                <div class="demo-window">
+                  <div class="demo-bar"><span class="dot" style="background:#ff6a6a"></span><span class="dot" style="background:#ffc857"></span><span class="dot" style="background:#4cd964"></span></div>
+                  <div class="demo-content">
+                    <div class="line long"></div>
+                    <div class="line medium"></div>
+                    <div class="line short"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-body">
+                <h3>DEMO PROJECT</h3>
+                <p>Restaurant</p>
+              </div>
+            </article>
+
+            <article class="demo-card">
+              <div class="demo-visual">
+                <div class="demo-window">
+                  <div class="demo-bar"><span class="dot" style="background:#ff6a6a"></span><span class="dot" style="background:#ffc857"></span><span class="dot" style="background:#4cd964"></span></div>
+                  <div class="demo-content">
+                    <div class="line long"></div>
+                    <div class="line medium"></div>
+                    <div class="line short"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-body">
+                <h3>DEMO PROJECT</h3>
+                <p>Handyman</p>
+              </div>
+            </article>
+
+            <article class="demo-card">
+              <div class="demo-visual">
+                <div class="demo-window">
+                  <div class="demo-bar"><span class="dot" style="background:#ff6a6a"></span><span class="dot" style="background:#ffc857"></span><span class="dot" style="background:#4cd964"></span></div>
+                  <div class="demo-content">
+                    <div class="line long"></div>
+                    <div class="line medium"></div>
+                    <div class="line short"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-body">
+                <h3>DEMO PROJECT</h3>
+                <p>Barber</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section reveal">
+        <div class="container">
+          <span class="eyebrow" style="display: block; text-align: center; margin-bottom: 12px;">About Alpine Digital</span>
+          <h2 class="section-title">ABOUT ALPINE DIGITAL</h2>
+          <div class="about-box" style="margin-top: 32px;">
+            <p>
+              Alpine Digital is a small Swiss web design and development business focused on helping local businesses build a professional presence online.
+            </p>
+            <p style="margin-top: 16px;">
+              We believe getting a good website shouldn't require an enormous budget.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="section reveal" style="background: var(--bg-soft);">
+        <div class="container">
+          <span class="eyebrow" style="display: block; text-align: center; margin-bottom: 12px;">Questions?</span>
+          <h2 class="section-title">QUESTIONS? WE'VE GOT ANSWERS.</h2>
+
+          <div class="faq-wrap" style="margin-top: 30px;">
+            <div class="faq-item active">
+              <button class="faq-question" type="button">
+                <span>How much does a website cost?</span>
+                <span>+</span>
+              </button>
+              <div class="faq-answer" style="max-height: 120px;">
+                <p>Our one-page websites start at CHF 79. Additional features can be added individually.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>Do you use templates?</span>
+                <span>+</span>
+              </button>
+              <div class="faq-answer">
+                <p>We can use proven layouts and components where appropriate, but your website is customized around your business.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>Will my website work on phones?</span>
+                <span>+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes. Mobile optimization is included.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>Can you add a contact form?</span>
+                <span>+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes. Contact forms are available as an additional feature for CHF 20.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>Can you connect my domain?</span>
+                <span>+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes. Domain connection is free. You only need to purchase the domain itself.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>Can you update my website later?</span>
+                <span>+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes. Small website updates start at CHF 5.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>Do I need to know anything about websites?</span>
+                <span>+</span>
+              </button>
+              <div class="faq-answer">
+                <p>No. We’ll handle the technical side for you.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta reveal">
+        <div class="container final-cta-inner">
+          <span class="final-cta-small">Ready to get online?</span>
+          <h2>LET'S BUILD YOUR WEBSITE.</h2>
+          <p>Tell us what you're looking for and we'll take it from there.</p>
+          <a href="#contact" class="btn ice">Get Started →</a>
+          <div class="footer-note">No complicated packages. No unnecessary extras.</div>
+        </div>
+      </section>
+
+      <section id="contact" class="section reveal">
+        <div class="container">
+          <span class="eyebrow" style="display: block; text-align: center; margin-bottom: 12px;">Let’s talk</span>
+          <h2 class="section-title">LET'S TALK.</h2>
+
+          <div class="contact-grid" style="margin-top: 36px;">
+            <div class="contact-card">
+              <h3>Have a project in mind?</h3>
+              <p class="contact-text">
+                Tell us a little about your business, what you need, and what you'd like your website to do.
+              </p>
+              <ul class="contact-list">
+                <li><span class="emoji">📧</span> <span>alpinedigital.business@gmail.com</span></li>
+                <li><span class="emoji">📞</span> <span>076 597 39 89</span></li>
+              </ul>
+            </div>
+
+            <div class="contact-card">
+              <form action="#" method="post">
+                <div class="field-row">
+                  <label>
+                    Name
+                    <input type="text" name="name" placeholder="Your name" />
+                  </label>
+                  <label>
+                    Business name
+                    <input type="text" name="business" placeholder="Your business" />
+                  </label>
+                </div>
+
+                <label>
+                  Email
+                  <input type="email" name="email" placeholder="you@example.com" />
+                </label>
+
+                <label>
+                  What do you need?
+                  <select name="need">
+                    <option>New website</option>
+                    <option>Website redesign</option>
+                    <option>Website update</option>
+                    <option>Add a feature</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+
+                <label>
+                  Message
+                  <textarea name="message" placeholder="Tell us about your project..."></textarea>
+                </label>
+
+                <button type="submit" class="btn primary" style="justify-self: start; min-width: 210px;">Send Request →</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">
+              <span class="brand-mark">A</span>
+              <span>Alpine Digital</span>
+            </div>
+            <div style="font-size: 1.1rem; line-height: 1.5; color: rgba(255,255,255,.8);">YOUR BUSINESS. OUR DIGITAL.</div>
+          </div>
+
+          <div>
+            <h4>Navigation</h4>
+            <ul class="footer-nav">
+              <li><a href="#top">Home</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Contact</h4>
+            <ul class="footer-contact">
+              <li>📧 alpinedigital.business@gmail.com</li>
+              <li>📞 076 597 39 89</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Alpine Digital. All rights reserved.</span>
+          <span>Web Design &amp; Web Development</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('.nav');
+
+      menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('open');
+        const isOpen = nav.classList.contains('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.textContent = isOpen ? '✕' : '☰';
+      });
+
+      document.querySelectorAll('.nav a').forEach((link) => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.textContent = '☰';
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      document.querySelectorAll('.faq-question').forEach((button) => {
+        button.addEventListener('click', () => {
+          const item = button.parentElement;
+          const answer = item.querySelector('.faq-answer');
+          const isOpen = item.classList.contains('active');
+
+          document.querySelectorAll('.faq-item').forEach((faq) => {
+            faq.classList.remove('active');
+            faq.querySelector('.faq-answer').style.maxHeight = null;
+          });
+
+          if (!isOpen) {
+            item.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
