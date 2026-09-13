@@ -301,15 +301,75 @@
       }
 
       .mockup-top {
-        background: var(--navy);
+        background: linear-gradient(180deg, #e7492d 0%, #d63e27 100%);
         color: var(--white);
-        padding: 18px 20px;
+        padding: 18px 18px 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 12px;
         font-size: 0.75rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+      }
+
+      .mockup-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+        flex: 1;
+      }
+
+      .mockup-app-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.16);
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .mockup-app-icon::before {
+        content: "";
+        width: 16px;
+        height: 16px;
+        border: 3px solid rgba(255, 255, 255, 0.9);
+        border-radius: 4px;
+        display: block;
+        transform: rotate(45deg);
+      }
+
+      .mockup-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: clamp(1.3rem, 1vw + 0.8rem, 2rem);
+        letter-spacing: -0.05em;
+        text-transform: none;
+        font-weight: 800;
+      }
+
+      .mockup-title .divider {
+        opacity: 0.8;
+        margin: 0 0.28em;
+      }
+
+      .mockup-plus {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        line-height: 1;
+        font-weight: 300;
+        background: rgba(255, 255, 255, 0.08);
       }
 
       .mockup-body {
@@ -1202,8 +1262,11 @@
             </div>
             <div class="mockup-content">
               <div class="mockup-top">
-                <span>Alpine Digital</span>
-                <span>New Website</span>
+                <span class="mockup-brand">
+                  <span class="mockup-app-icon" aria-hidden="true"></span>
+                  <span class="mockup-title">Alpine Digital <span class="divider">|</span> Web Design</span>
+                </span>
+                <span class="mockup-plus" aria-hidden="true">+</span>
               </div>
               <div class="mockup-body">
                 <div class="placeholder" aria-hidden="true"></div>
