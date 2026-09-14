@@ -1709,7 +1709,7 @@
 
         if (currentScrollY <= 10 || currentScrollY < lastScrollY || menuIsOpen) {
           siteHeader.classList.remove('header-hidden');
-        } else if (currentScrollY > lastScrollY) {
+        } else if (currentScrollY > lastScrollY && currentScrollY > window.innerHeight) {
           siteHeader.classList.add('header-hidden');
         }
 
