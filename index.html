@@ -135,6 +135,13 @@
         background: rgba(255, 255, 255, 0.96);
         backdrop-filter: blur(8px);
         border-bottom: 1px solid var(--border);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .site-header.header-hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
       }
 
       .nav-wrap {
@@ -1693,10 +1700,26 @@
     <script>
       const menuToggle = document.querySelector('.menu-toggle');
       const nav = document.querySelector('.nav');
+      const siteHeader = document.querySelector('.site-header');
+      let lastScrollY = window.scrollY;
+
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        const menuIsOpen = nav.classList.contains('open');
+
+        if (currentScrollY <= 10 || currentScrollY < lastScrollY || menuIsOpen) {
+          siteHeader.classList.remove('header-hidden');
+        } else if (currentScrollY > lastScrollY) {
+          siteHeader.classList.add('header-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+      }, { passive: true });
 
       menuToggle.addEventListener('click', () => {
         nav.classList.toggle('open');
         const isOpen = nav.classList.contains('open');
+        siteHeader.classList.remove('header-hidden');
         menuToggle.setAttribute('aria-expanded', String(isOpen));
         menuToggle.textContent = isOpen ? '✕' : '☰';
       });
